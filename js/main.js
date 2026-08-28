@@ -1,5 +1,30 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+  /* ---------- Scroll progress bar ---------- */
+  const scrollProgress = document.getElementById('scrollProgress');
+  const updateProgress = () => {
+    if (!scrollProgress) return;
+    const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+    const pct = scrollable > 0 ? (window.scrollY / scrollable) * 100 : 0;
+    scrollProgress.style.width = pct + '%';
+  };
+
+  /* ---------- AI Act alert banner (dismissible) ---------- */
+  const alertBanner = document.getElementById('alertBanner');
+  const alertClose = document.getElementById('alertClose');
+  const BANNER_KEY = 'centeia-banner-dismissed';
+
+  try {
+    if (sessionStorage.getItem(BANNER_KEY) === '1' && alertBanner) {
+      alertBanner.classList.add('is-hidden');
+    }
+  } catch (e) { /* storage unavailable */ }
+
+  alertClose?.addEventListener('click', () => {
+    alertBanner?.classList.add('is-hidden');
+    try { sessionStorage.setItem(BANNER_KEY, '1'); } catch (e) { /* ignore */ }
+  });
+
   /* ---------- Mobile nav toggle ---------- */
   const navToggle = document.getElementById('navToggle');
   const nav = document.getElementById('nav');
@@ -20,41 +45,20 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  /* ---------- Header shadow on scroll ---------- */
+  /* ---------- Header shadow + scroll-top visibility ---------- */
   const header = document.getElementById('header');
   const scrollTopBtn = document.getElementById('scrollTop');
 
   const onScroll = () => {
-    const scrolled = window.scrollY > 20;
-    header?.classList.toggle('is-scrolled', scrolled);
+    header?.classList.toggle('is-scrolled', window.scrollY > 20);
     scrollTopBtn?.classList.toggle('is-visible', window.scrollY > 500);
+    updateProgress();
   };
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
 
   scrollTopBtn?.addEventListener('click', () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
-
-  /* ---------- Tabs (Casos de uso) ---------- */
-  const tabButtons = document.querySelectorAll('.tab-btn');
-  const tabPanels = document.querySelectorAll('.tab-panel');
-
-  tabButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const target = btn.dataset.tab;
-
-      tabButtons.forEach(b => {
-        b.classList.remove('is-active');
-        b.setAttribute('aria-selected', 'false');
-      });
-      btn.classList.add('is-active');
-      btn.setAttribute('aria-selected', 'true');
-
-      tabPanels.forEach(panel => {
-        panel.classList.toggle('is-active', panel.dataset.panel === target);
-      });
-    });
   });
 
   /* ---------- FAQ Accordion ---------- */
@@ -68,22 +72,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
   accordionItems.forEach(item => {
     const trigger = item.querySelector('.accordion__trigger');
-    setPanelHeight(item, item.classList.contains('is-open'));
+    setPanelHeight(item, false);
 
     trigger?.addEventListener('click', () => {
       const willOpen = !item.classList.contains('is-open');
-
-      accordionItems.forEach(other => {
-        other.classList.remove('is-open');
-        other.querySelector('.accordion__trigger')?.setAttribute('aria-expanded', 'false');
-        setPanelHeight(other, false);
-      });
-
-      if (willOpen) {
-        item.classList.add('is-open');
-        trigger.setAttribute('aria-expanded', 'true');
-        setPanelHeight(item, true);
-      }
+      item.classList.toggle('is-open', willOpen);
+      trigger.setAttribute('aria-expanded', String(willOpen));
+      setPanelHeight(item, willOpen);
     });
   });
 
@@ -104,37 +99,9 @@ document.addEventListener('DOMContentLoaded', () => {
         revealObserver.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.15 });
+  }, { threshold: 0.12 });
 
   revealEls.forEach(el => revealObserver.observe(el));
-
-  /* ---------- Animated counters ---------- */
-  const counters = document.querySelectorAll('[data-count]');
-
-  const animateCounter = (el) => {
-    const target = Number(el.dataset.count);
-    const duration = 1400;
-    const start = performance.now();
-
-    const tick = (now) => {
-      const progress = Math.min((now - start) / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 3);
-      el.textContent = Math.round(eased * target);
-      if (progress < 1) requestAnimationFrame(tick);
-    };
-    requestAnimationFrame(tick);
-  };
-
-  const counterObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        animateCounter(entry.target);
-        counterObserver.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.5 });
-
-  counters.forEach(c => counterObserver.observe(c));
 
   /* ---------- Contact form ---------- */
   const form = document.getElementById('contactForm');

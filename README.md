@@ -18,14 +18,19 @@ web-clon/
 
 ## Secciones incluidas
 
-- Hero con CTA dobles y tarjeta de métricas animada
-- Banner de autoridad / métricas de impacto (contadores animados)
-- Casos de uso por industria (Retail, Industria, Servicios, Financiero) en tabs
-- Propuesta de valor (grid de 4 beneficios)
-- Metodología (Análisis → Ejecución → Medición de resultados)
-- Asesoramiento legal & AI Act (Reglamento UE 2024/1689, RGPD)
-- FAQ en acordeón
-- Formulario de contacto + footer
+- Banner superior descartable de aviso AI Act + barra de progreso de scroll
+- Header con navegación fija, menú móvil y CTA
+- Hero con titular, CTAs, microcopy de confianza y estadísticas de clientes
+- Franja de logos de clientes
+- Sección del libro "El Método IA"
+- Servicios organizados en timeline por madurez de IA (3 momentos, 8 servicios) con tarjeta destacada de cumplimiento AI Act
+- Casos de éxito con métricas reales por cliente
+- Grid "Por qué CenteIA" (5 columnas con números de gran formato)
+- Sección de fundador/liderazgo
+- Metodología en 4 fases con actividades clave y entregables
+- Sectores (6 tarjetas con iconos)
+- FAQ en acordeón a 2 columnas
+- Formulario de contacto + footer completo
 
 ## Ejecutar en local
 
