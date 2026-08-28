@@ -1,5 +1,99 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+  /* ---------- Hero animated nebula background ---------- */
+  const heroCanvas = document.getElementById('heroCanvas');
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (heroCanvas && !prefersReducedMotion) {
+    const ctx = heroCanvas.getContext('2d');
+    let width, height, dpr;
+    let particles = [];
+    let rafId = null;
+    let running = false;
+
+    const PARTICLE_COUNT = 46;
+    const COLORS = ['rgba(96,175,255,', 'rgba(139,92,246,', 'rgba(27,79,255,'];
+
+    const resize = () => {
+      const rect = heroCanvas.parentElement.getBoundingClientRect();
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      width = rect.width;
+      height = rect.height;
+      heroCanvas.width = width * dpr;
+      heroCanvas.height = height * dpr;
+      heroCanvas.style.width = width + 'px';
+      heroCanvas.style.height = height + 'px';
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    };
+
+    const initParticles = () => {
+      const cx = width / 2;
+      const cy = height * 0.42;
+      particles = Array.from({ length: PARTICLE_COUNT }, () => {
+        const radius = 60 + Math.random() * Math.min(width, height) * 0.42;
+        const angle = Math.random() * Math.PI * 2;
+        return {
+          cx, cy, radius,
+          angle,
+          speed: (0.06 + Math.random() * 0.1) * (Math.random() < 0.5 ? 1 : -1) / radius * 40,
+          size: 1 + Math.random() * 2,
+          color: COLORS[Math.floor(Math.random() * COLORS.length)],
+          alpha: 0.25 + Math.random() * 0.5
+        };
+      });
+    };
+
+    const drawArcs = () => {
+      const cx = width / 2;
+      const cy = height * 0.42;
+      const maxR = Math.min(width, height) * 0.5;
+      for (let i = 1; i <= 3; i++) {
+        ctx.beginPath();
+        ctx.arc(cx, cy, (maxR / 3) * i, 0, Math.PI * 2);
+        ctx.strokeStyle = 'rgba(96,175,255,' + (0.06 - i * 0.012) + ')';
+        ctx.lineWidth = 1;
+        ctx.stroke();
+      }
+    };
+
+    const draw = () => {
+      ctx.clearRect(0, 0, width, height);
+      drawArcs();
+      particles.forEach(p => {
+        p.angle += p.speed * 0.016;
+        const x = p.cx + Math.cos(p.angle) * p.radius;
+        const y = p.cy + Math.sin(p.angle) * p.radius * 0.6;
+        ctx.beginPath();
+        ctx.arc(x, y, p.size, 0, Math.PI * 2);
+        ctx.fillStyle = p.color + p.alpha + ')';
+        ctx.shadowColor = p.color + '0.8)';
+        ctx.shadowBlur = 6;
+        ctx.fill();
+      });
+      ctx.shadowBlur = 0;
+      if (running) rafId = requestAnimationFrame(draw);
+    };
+
+    const start = () => {
+      if (running) return;
+      running = true;
+      rafId = requestAnimationFrame(draw);
+    };
+    const stop = () => {
+      running = false;
+      if (rafId) cancelAnimationFrame(rafId);
+    };
+
+    resize();
+    initParticles();
+    start();
+
+    window.addEventListener('resize', () => { resize(); initParticles(); }, { passive: true });
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) stop(); else start();
+    });
+  }
+
   /* ---------- Scroll progress bar ---------- */
   const scrollProgress = document.getElementById('scrollProgress');
   const updateProgress = () => {
