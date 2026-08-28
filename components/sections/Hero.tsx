@@ -1,4 +1,5 @@
-import { ArrowRight, Sparkles, TrendingUp, ShieldCheck } from "lucide-react";
+import Image from "next/image";
+import { ArrowRight, Sparkles, ShieldCheck } from "lucide-react";
 
 export function Hero() {
   return (
@@ -46,7 +47,9 @@ export function Hero() {
                 </div>
                 <div className="hero__visual-body">
                   <div className="hero__visual-chat">
-                    <span className="hero__visual-chat-badge">IA</span>
+                    <span className="hero__visual-chat-badge">
+                      <Image src="/labs24k-icon.svg" alt="" width={16} height={16} />
+                    </span>
                     <p>He detectado 3 automatizaciones con ROI estimado de 4x en tu operación.</p>
                   </div>
                   <div className="hero__visual-metric">
@@ -70,14 +73,12 @@ export function Hero() {
                 </div>
               </div>
 
-              <div className="hero__float hero__float--1">
-                <ShieldCheck aria-hidden="true" size={18} />
-                <div><strong>AI Act</strong><span>cumplimiento integrado</span></div>
-              </div>
-              <div className="hero__float hero__float--2">
-                <TrendingUp aria-hidden="true" size={18} />
-                <div><strong>+200</strong><span>directivos formados</span></div>
-              </div>
+              <p className="hero__visual-caption">
+                <ShieldCheck aria-hidden="true" size={14} />
+                Cumplimiento AI Act integrado
+                <span className="hero__visual-caption-dot"></span>
+                +200 directivos ya formados
+              </p>
             </div>
           </div>
 
