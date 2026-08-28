@@ -1,51 +1,64 @@
-# web-clon
+# Labs24k — Landing page
 
-Clon de la landing page de [CenteIA Consulting](https://www.centeiaconsulting.com/) — consultoría de IA para empresas con estrategia, implementación técnica y cumplimiento legal (AI Act & RGPD).
+Sitio corporativo de **Labs24k** — innovación, crecimiento y tecnología. Consultoría en IA aplicada a empresa: estrategia, implementación técnica y cumplimiento legal (AI Act & RGPD).
 
-Construido con **HTML5 semántico + CSS3 (vanilla) + JavaScript vainilla**, sin dependencias de build.
+Construido con **Next.js (App Router) + TypeScript + Tailwind CSS v4 + shadcn/ui**.
+
+## Stack
+
+- **Next.js 16** (App Router, Turbopack)
+- **TypeScript**
+- **Tailwind CSS v4**
+- **shadcn/ui** conventions (`components.json`, `lib/utils.ts` con `cn()`, componentes en `components/ui/`)
+- **framer-motion**, **lucide-react**, **@splinetool/react-spline**
 
 ## Estructura
 
 ```
-web-clon/
-├── index.html        # Estructura de toda la landing (hero, casos de uso, valor, metodología, legal, FAQ, contacto)
-├── css/
-│   └── styles.css     # Diseño, paleta de colores, responsive, animaciones
-├── js/
-│   └── main.js         # Menú móvil, tabs, acordeón FAQ, scroll reveal, contadores animados, formulario
-└── package.json
+├── app/
+│   ├── layout.tsx        # Fuente Inter, metadata, tema oscuro por defecto
+│   ├── page.tsx           # Landing principal (compone todas las secciones)
+│   ├── globals.css         # Tokens de shadcn + paleta de marca Labs24k
+│   ├── icon.png              # Favicon (generado a partir del logo oficial)
+│   ├── apple-icon.png          # Apple touch icon
+│   └── showroom/page.tsx        # Página de componentes de demo (Spline 3D, FAQ tabs)
+├── components/
+│   ├── ui/                 # Primitivas shadcn (card, spotlight, splite, faq-tabs)
+│   ├── sections/            # Secciones de la landing (Hero, Services, Faq, Footer...)
+│   ├── SiteInteractions.tsx  # Client component: nav móvil, scroll reveal, canvas hero, etc.
+│   ├── spline-scene-demo.tsx  # Demo del componente 3D interactivo
+│   ├── faq-tabs-demo.tsx       # Demo genérico del FAQ con tabs (contenido original en inglés)
+│   └── error-boundary.tsx       # Error boundary genérico (usado alrededor de la escena 3D)
+├── public/
+│   ├── labs24k-logo-on-dark.png   # Logo completo (claro) para fondos oscuros
+│   ├── labs24k-logo-on-light.png   # Logo completo (oscuro) para fondos claros
+│   └── og-image.png                 # Imagen para Open Graph / redes sociales
+├── lib/utils.ts             # Helper cn() de shadcn
+└── components.json           # Config de shadcn/ui
 ```
 
-## Secciones incluidas
+## Marca
 
-- Banner superior descartable de aviso AI Act + barra de progreso de scroll
-- Header con navegación fija, menú móvil y CTA
-- Hero con titular, CTAs, microcopy de confianza y estadísticas de clientes
-- Franja de logos de clientes
-- Sección del libro "El Método IA"
-- Servicios organizados en timeline por madurez de IA (3 momentos, 8 servicios) con tarjeta destacada de cumplimiento AI Act
-- Casos de éxito con métricas reales por cliente
-- Grid "Por qué CenteIA" (5 columnas con números de gran formato)
-- Sección de fundador/liderazgo
-- Metodología en 4 fases con actividades clave y entregables
-- Sectores (6 tarjetas con iconos)
-- FAQ en acordeón a 2 columnas
-- Formulario de contacto + footer completo
+- Logo, favicon, OG image e imagen de fondo del hero están generados a partir del logo oficial de Labs24k.
+- Paleta de color extraída de la guía de marca: azul `#0563a7` / `#30a4ce`, teal `#02b5b2` / `#1ebcbf`, rosa/magenta `#ed2566`, navy `#080c14`.
+- El correo de contacto por defecto es `admin@labs24k.com`; verifica y actualiza la URL de LinkedIn del footer (`/company/labs24k`) con el enlace real.
+
+**Pendiente de contenido real**: la sección de "Casos de éxito" y "Liderado por" usan datos de marcador de posición (clientes genéricos, equipo sin nombre) — sustitúyelos por testimonios y biografías reales de Labs24k cuando estén disponibles.
+
+## `/showroom`
+
+Página separada (`/showroom`) con los componentes recién integrados en su forma de demo original (contenido en inglés, sin traducir): la escena 3D interactiva (Spline + Spotlight) y el FAQ genérico de ejemplo. Se mantiene aparte de la landing real para no mezclar contenido de placeholder con el copy de negocio.
 
 ## Ejecutar en local
 
-No requiere instalación de dependencias para verlo: puedes abrir `index.html` directamente en el navegador.
-
-Para levantar un servidor de desarrollo local:
-
 ```bash
+npm install
 npm run dev
 ```
 
-Esto ejecuta `serve` (vía `npx`) en `http://localhost:3000`.
-
-Alternativa sin Node:
+Abre `http://localhost:3000` (landing) y `http://localhost:3000/showroom` (showroom de componentes).
 
 ```bash
-python3 -m http.server 3000
+npm run build   # build de producción
+npm run lint    # eslint
 ```
