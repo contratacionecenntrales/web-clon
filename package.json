@@ -1,0 +1,10 @@
+{
+  "name": "centeia-landing-clone",
+  "version": "1.0.0",
+  "description": "Clon de landing page de CenteIA Consulting - HTML/CSS/JS vanilla",
+  "private": true,
+  "scripts": {
+    "dev": "npx --yes serve . -l 3000",
+    "start": "npx --yes serve . -l 3000"
+  }
+}
