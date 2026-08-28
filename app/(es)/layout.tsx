@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
+import type { ReactNode } from "react";
 import { Inter } from "next/font/google";
-import "./globals.css";
+import "../globals.css";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -15,6 +16,16 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://www.labs24k.com"),
   title: "Labs24k | Inteligencia Artificial y Automatización",
   description,
+  alternates: {
+    languages: {
+      es: "https://www.labs24k.com/",
+      en: "https://www.labs24k.com/en",
+      fr: "https://www.labs24k.com/fr",
+      de: "https://www.labs24k.com/de",
+      ca: "https://www.labs24k.com/ca",
+      ar: "https://www.labs24k.com/ar",
+    },
+  },
   openGraph: {
     title: "Labs24k | Inteligencia Artificial y Automatización",
     description,
@@ -31,7 +42,7 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="es" className={`dark ${inter.variable} antialiased`}>
       <body className="bg-canvas">{children}</body>

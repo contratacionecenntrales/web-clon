@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
+import type { Dictionary } from '@/i18n/dictionaries/es';
 
 /**
  * Client-side behavior for the Labs24k landing page, ported 1:1 from the
@@ -13,7 +14,7 @@ import { useEffect } from 'react';
  *
  * Renders nothing; only wires up side effects after mount.
  */
-export function SiteInteractions() {
+export function SiteInteractions({ emailDict }: { emailDict: Dictionary['contact']['form'] }) {
   useEffect(() => {
     const cleanups: Array<() => void> = [];
 
@@ -237,14 +238,15 @@ export function SiteInteractions() {
       const phone = (data.get('phone') as string) || '';
       const message = (data.get('message') as string) || '';
 
-      const subject = `Nuevo contacto desde la web - ${name || 'Sin nombre'}`;
+      const f = emailDict.emailFields;
+      const subject = `${emailDict.emailSubjectPrefix} ${name || emailDict.emailNoName}`;
       const bodyLines = [
-        `Nombre: ${name}`,
-        `Empresa: ${company || '-'}`,
-        `Email: ${email}`,
-        `Teléfono: ${phone || '-'}`,
+        `${f.name}: ${name}`,
+        `${f.company}: ${company || '-'}`,
+        `${f.email}: ${email}`,
+        `${f.phone}: ${phone || '-'}`,
         '',
-        'Situación:',
+        f.situation,
         message,
       ];
       const mailtoUrl = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyLines.join('\n'))}`;
@@ -258,7 +260,7 @@ export function SiteInteractions() {
     cleanups.push(() => form?.removeEventListener('submit', onSubmit));
 
     return () => cleanups.forEach((fn) => fn());
-  }, []);
+  }, [emailDict]);
 
   return null;
 }

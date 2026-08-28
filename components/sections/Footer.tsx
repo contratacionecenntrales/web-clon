@@ -1,8 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
-import { services } from "@/data/services";
+import type { Dictionary } from "@/i18n/dictionaries/es";
+import type { LocalizedService } from "@/i18n/get-services";
+import { localeHref, type Locale } from "@/i18n/config";
+import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 
-export function Footer() {
+export function Footer({ dict, services, locale }: { dict: Dictionary["footer"]; services: LocalizedService[]; locale: Locale }) {
   const year = new Date().getFullYear();
   return (
     <>
@@ -14,7 +17,7 @@ export function Footer() {
               <Image src="/labs24k-icon.svg" alt="" aria-hidden="true" width={40} height={40} className="logo__icon" />
               <span className="logo__wordmark">Labs24k</span>
             </span>
-            <p>Innovación, crecimiento y tecnología: resultados, no presentaciones.</p>
+            <p>{dict.tagline}</p>
             <div className="footer__social">
               <a href="https://www.facebook.com/share/1GKPPqFQL1/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
                 <svg aria-hidden="true" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
@@ -28,39 +31,35 @@ export function Footer() {
             </div>
           </div>
           <div className="footer__col">
-            <h4>Servicios</h4>
+            <h4>{dict.servicesHeading}</h4>
             {services.map((service) => (
-              <Link href={`/servicios/${service.slug}`} key={service.slug}>{service.title}</Link>
+              <Link href={localeHref(locale, `/servicios/${service.slug}`)} key={service.slug}>{service.title}</Link>
             ))}
           </div>
           <div className="footer__col">
-            <h4>Empresa</h4>
-            <Link href="/#servicios">Servicios</Link>
-            <Link href="/#metodologia">Metodología</Link>
-            <Link href="/#clientes">Clientes</Link>
-            <Link href="/#nosotros">Nosotros</Link>
-            <Link href="/#libro">El libro</Link>
-            <Link href="/#legal">AI Act</Link>
-            <Link href="/#contacto">Llamada gratuita</Link>
-            <Link href="/#contacto">Contacto</Link>
+            <h4>{dict.companyHeading}</h4>
+            {dict.companyLinks.map((link) => (
+              <Link href={localeHref(locale, link.href)} key={link.label + link.href}>{link.label}</Link>
+            ))}
           </div>
           <div className="footer__col">
-            <h4>Contacto</h4>
+            <h4>{dict.contactHeading}</h4>
             <a href="mailto:admin@labs24k.com">admin@labs24k.com</a>
-            <p className="footer__note">Innovación, crecimiento<br />y tecnología</p>
+            <p className="footer__note">{dict.note}</p>
           </div>
         </div>
         <div className="container footer__bottom">
-          <p>© <span>{year}</span> Labs24k. Todos los derechos reservados.</p>
+          <p>© <span>{year}</span> Labs24k. {dict.rights}</p>
+          <LanguageSwitcher currentLocale={locale} label={dict.language} />
           <div className="footer__legal">
-            <a href="#">Aviso legal</a>
-            <a href="#">Política de privacidad</a>
-            <a href="#">Cookies</a>
+            {dict.legalLinks.map((label) => (
+              <a href="#" key={label}>{label}</a>
+            ))}
           </div>
         </div>
       </footer>
 
-      <button className="scroll-top" id="scrollTop" aria-label="Volver arriba">
+      <button className="scroll-top" id="scrollTop" aria-label={dict.scrollTop}>
         <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="m18 15-6-6-6 6"/></svg>
       </button>
     </>

@@ -1,10 +1,14 @@
-export function LogosStrip() {
+import type { Dictionary } from "@/i18n/dictionaries/es";
+
+export function LogosStrip({ dict }: { dict: Dictionary["logosStrip"] }) {
   return (
-    <section className="logos-strip" aria-label="Sectores en los que trabajamos">
+    <section className="logos-strip" aria-label={dict.ariaLabel}>
         <div className="container">
-          <p className="logos-strip__label reveal">Sectores en los que ya hemos trabajado</p>
+          <p className="logos-strip__label reveal">{dict.label}</p>
           <div className="logos-strip__row reveal" data-reveal-delay="100">
-            <span>Educación</span><span>Industria</span><span>Retail</span><span>Servicios Profesionales</span><span>Deporte</span><span>Tecnología</span>
+            {dict.items.map((item) => (
+              <span key={item}>{item}</span>
+            ))}
           </div>
         </div>
       </section>
