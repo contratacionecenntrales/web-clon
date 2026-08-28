@@ -1,4 +1,6 @@
 import Image from "next/image";
+import Link from "next/link";
+import { services } from "@/data/services";
 
 export function Footer() {
   const year = new Date().getFullYear();
@@ -27,25 +29,20 @@ export function Footer() {
           </div>
           <div className="footer__col">
             <h4>Servicios</h4>
-            <a href="#servicios">Consultoría en IA</a>
-            <a href="#servicios">AI Audit</a>
-            <a href="#servicios">Chatbots Inteligentes</a>
-            <a href="#servicios">Formación a Medida</a>
-            <a href="#servicios">Departamento IA Externo</a>
-            <a href="#legal">Asesoramiento Legal y Regulatorio</a>
-            <a href="#servicios">Apoyo en Contratación</a>
-            <a href="#servicios">Desarrollos a Medida</a>
+            {services.map((service) => (
+              <Link href={`/servicios/${service.slug}`} key={service.slug}>{service.title}</Link>
+            ))}
           </div>
           <div className="footer__col">
             <h4>Empresa</h4>
-            <a href="#servicios">Servicios</a>
-            <a href="#metodologia">Metodología</a>
-            <a href="#clientes">Clientes</a>
-            <a href="#nosotros">Nosotros</a>
-            <a href="#libro">El libro</a>
-            <a href="#legal">AI Act</a>
-            <a href="#contacto">Llamada gratuita</a>
-            <a href="#contacto">Contacto</a>
+            <Link href="/#servicios">Servicios</Link>
+            <Link href="/#metodologia">Metodología</Link>
+            <Link href="/#clientes">Clientes</Link>
+            <Link href="/#nosotros">Nosotros</Link>
+            <Link href="/#libro">El libro</Link>
+            <Link href="/#legal">AI Act</Link>
+            <Link href="/#contacto">Llamada gratuita</Link>
+            <Link href="/#contacto">Contacto</Link>
           </div>
           <div className="footer__col">
             <h4>Contacto</h4>
