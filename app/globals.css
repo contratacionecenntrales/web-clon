@@ -843,15 +843,4 @@ section { padding: 96px 0; }
   .hero__actions .btn { width: 100%; }
 }
 
-/* ============ Spline loader (used by components/ui/splite.tsx Suspense fallback) ============ */
-.loader {
-  width: 32px;
-  height: 32px;
-  border: 3px solid rgba(255,255,255,0.15);
-  border-top-color: var(--blue-light, #14b8be);
-  border-radius: 50%;
-  animation: loader-spin 0.8s linear infinite;
-}
-@keyframes loader-spin { to { transform: rotate(360deg); } }
-
 }
