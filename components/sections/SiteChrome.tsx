@@ -31,7 +31,8 @@ export function SiteChrome() {
       <header className="header" id="header">
         <div className="container header__inner">
           <a href="#top" className="logo" aria-label="Labs24k - Inicio">
-            <Image src="/labs24k-logo-on-dark.png" alt="Labs24k" width={148} height={106} className="logo__image" priority />
+            <Image src="/labs24k-icon.svg" alt="" aria-hidden="true" width={36} height={36} className="logo__icon" priority />
+            <span className="logo__wordmark">Labs24k</span>
           </a>
 
           <nav className="nav" id="nav" role="navigation">

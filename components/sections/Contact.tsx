@@ -1,3 +1,5 @@
+import Script from "next/script";
+
 export function Contact() {
   return (
     <section className="contact" id="contacto">
@@ -11,6 +13,23 @@ export function Contact() {
               <span>Respuesta en 24 h</span>
               <span>100% confidencial</span>
             </div>
+          </div>
+
+          <div className="booking-widget reveal">
+            <iframe
+              src="https://software.metatok.ai/widget/booking/Z5Iu4ImaLs5OGIBEKM6z"
+              allow="payment"
+              style={{ width: "100%", border: "none", overflow: "hidden" }}
+              scrolling="no"
+              id="Z5Iu4ImaLs5OGIBEKM6z_1787895624754"
+              className="booking-widget__iframe"
+              title="Agenda tu llamada gratuita"
+            />
+          </div>
+          <Script src="https://software.metatok.ai/js/form_embed.js" strategy="lazyOnload" />
+
+          <div className="contact__divider">
+            <span>¿Prefieres escribirnos primero?</span>
           </div>
 
           <form className="contact__form reveal" id="contactForm" noValidate>
@@ -39,7 +58,7 @@ export function Contact() {
               <textarea id="message" name="message" rows={4} required></textarea>
             </div>
             <button type="submit" className="btn btn--primary btn--lg btn--block">
-              Agendar llamada gratuita
+              Enviar mensaje
               <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
             </button>
             <p className="form-success" id="formSuccess" role="status">¡Gracias! Hemos recibido tu solicitud, te contactaremos en menos de 24h.</p>

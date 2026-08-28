@@ -12,7 +12,7 @@ export function Clients() {
 
           <div className="client-grid">
             <article className="client-card reveal">
-              <div className="client-card__logo" style={{background: '#0563a7'}}><span style={{color: '#fff', fontWeight: 800, letterSpacing: '0.06em'}}>Cliente 01</span></div>
+              <div className="client-card__logo" style={{background: '#123a52'}}><span style={{color: '#fff', fontWeight: 800, letterSpacing: '0.06em'}}>Cliente 01</span></div>
               <div className="client-card__top">
                 <h3>Formación ejecutiva</h3>
                 <span>Educación</span>
@@ -23,7 +23,7 @@ export function Clients() {
             </article>
 
             <article className="client-card reveal" data-reveal-delay="80">
-              <div className="client-card__logo" style={{background: '#02b5b2'}}><span style={{color: '#fff', fontWeight: 800, letterSpacing: '0.06em'}}>Cliente 02</span></div>
+              <div className="client-card__logo" style={{background: '#1c6e82'}}><span style={{color: '#fff', fontWeight: 800, letterSpacing: '0.06em'}}>Cliente 02</span></div>
               <div className="client-card__top">
                 <h3>Fabricante industrial</h3>
                 <span>Industria</span>
@@ -34,7 +34,7 @@ export function Clients() {
             </article>
 
             <article className="client-card reveal" data-reveal-delay="160">
-              <div className="client-card__logo" style={{background: '#ed2566'}}><span style={{color: '#fff', fontWeight: 800, letterSpacing: '0.06em'}}>Cliente 03</span></div>
+              <div className="client-card__logo" style={{background: '#14b8be'}}><span style={{color: '#fff', fontWeight: 800, letterSpacing: '0.06em'}}>Cliente 03</span></div>
               <div className="client-card__top">
                 <h3>Marca de retail</h3>
                 <span>Retail &amp; E-commerce</span>
@@ -45,7 +45,7 @@ export function Clients() {
             </article>
 
             <article className="client-card reveal">
-              <div className="client-card__logo" style={{background: '#30a4ce'}}><span style={{color: '#fff', fontWeight: 800, letterSpacing: '0.06em'}}>Cliente 04</span></div>
+              <div className="client-card__logo" style={{background: '#0e5f70'}}><span style={{color: '#fff', fontWeight: 800, letterSpacing: '0.06em'}}>Cliente 04</span></div>
               <div className="client-card__top">
                 <h3>Firma de servicios</h3>
                 <span>Servicios Profesionales</span>
@@ -56,7 +56,7 @@ export function Clients() {
             </article>
 
             <article className="client-card reveal" data-reveal-delay="80">
-              <div className="client-card__logo" style={{background: '#1ebcbf'}}><span style={{color: '#fff', fontWeight: 800, letterSpacing: '0.06em'}}>Cliente 05</span></div>
+              <div className="client-card__logo" style={{background: '#1a8f96'}}><span style={{color: '#fff', fontWeight: 800, letterSpacing: '0.06em'}}>Cliente 05</span></div>
               <div className="client-card__top">
                 <h3>Marca deportiva</h3>
                 <span>Industria Deportiva</span>

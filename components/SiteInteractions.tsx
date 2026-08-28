@@ -36,7 +36,7 @@ export function SiteInteractions() {
         let running = false;
 
         const PARTICLE_COUNT = 46;
-        const COLORS = ['rgba(48,164,206,', 'rgba(139,92,246,', 'rgba(5,99,167,'];
+        const COLORS = ['rgba(20,184,190,', 'rgba(139,92,246,', 'rgba(18,58,82,'];
 
         const resize = () => {
           const rect = heroCanvas.parentElement!.getBoundingClientRect();
@@ -74,7 +74,7 @@ export function SiteInteractions() {
           for (let i = 1; i <= 3; i++) {
             ctx.beginPath();
             ctx.arc(cx, cy, (maxR / 3) * i, 0, Math.PI * 2);
-            ctx.strokeStyle = 'rgba(48,164,206,' + (0.06 - i * 0.012) + ')';
+            ctx.strokeStyle = 'rgba(20,184,190,' + (0.06 - i * 0.012) + ')';
             ctx.lineWidth = 1;
             ctx.stroke();
           }
@@ -221,13 +221,36 @@ export function SiteInteractions() {
     const form = document.getElementById('contactForm') as HTMLFormElement | null;
     const formSuccess = document.getElementById('formSuccess');
 
+    const CONTACT_EMAIL = 'info@labs24k.com';
+
     const onSubmit = (e: Event) => {
       e.preventDefault();
       if (!form || !form.checkValidity()) {
         form?.reportValidity();
         return;
       }
+
+      const data = new FormData(form);
+      const name = (data.get('name') as string) || '';
+      const company = (data.get('company') as string) || '';
+      const email = (data.get('email') as string) || '';
+      const phone = (data.get('phone') as string) || '';
+      const message = (data.get('message') as string) || '';
+
+      const subject = `Nuevo contacto desde la web - ${name || 'Sin nombre'}`;
+      const bodyLines = [
+        `Nombre: ${name}`,
+        `Empresa: ${company || '-'}`,
+        `Email: ${email}`,
+        `Teléfono: ${phone || '-'}`,
+        '',
+        'Situación:',
+        message,
+      ];
+      const mailtoUrl = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyLines.join('\n'))}`;
+
       formSuccess?.classList.add('is-visible');
+      window.location.href = mailtoUrl;
       form.reset();
       setTimeout(() => formSuccess?.classList.remove('is-visible'), 6000);
     };

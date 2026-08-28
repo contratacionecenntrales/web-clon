@@ -8,7 +8,10 @@ export function Footer() {
       <footer className="footer">
         <div className="container footer__inner">
           <div className="footer__brand">
-            <Image src="/labs24k-logo-on-dark.png" alt="Labs24k" width={148} height={106} className="logo__image" />
+            <span className="logo footer__logo">
+              <Image src="/labs24k-icon.svg" alt="" aria-hidden="true" width={40} height={40} className="logo__icon" />
+              <span className="logo__wordmark">Labs24k</span>
+            </span>
             <p>Innovación, crecimiento y tecnología: resultados, no presentaciones.</p>
             <div className="footer__social">
               <a href="https://www.linkedin.com/company/labs24k" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
