@@ -1,0 +1,37 @@
+# Labs24k — cabeceras de seguridad para la web pública (Apache/Hostalia).
+# Next.js exporta HTML/CSS/JS estáticos a out/, y Next copia todo lo que
+# hay en public/ tal cual a la raíz del export — así que este fichero
+# termina en la raíz de lo que se sube a Hostalia sin ningún paso extra.
+
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "geolocation=(), microphone=(), camera=()"
+
+  # 'unsafe-inline' en script-src es un compromiso deliberado, no un
+  # descuido: el export estático de Next.js incrusta su payload de
+  # hidratación en <script> inline (self.__next_f.push(...)) en cada
+  # página, y al no haber servidor en cada petición no hay forma de
+  # generar un nonce distinto por visita. El resto de directivas sí queda
+  # restringido a los orígenes que realmente se usan (el widget de
+  # reservas de software.metatok.ai y la fuente de Google Fonts, si se usa).
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://software.metatok.ai; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://images.unsplash.com; frame-src https://software.metatok.ai; connect-src 'self' https://software.metatok.ai; object-src 'none'; base-uri 'self'; frame-ancestors 'self'"
+
+  # Actívala solo cuando el dominio principal ya sirva siempre por HTTPS.
+  Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+</IfModule>
+
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css application/javascript application/json image/svg+xml
+</IfModule>
+
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/css "access plus 1 year"
+  ExpiresByType application/javascript "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+</IfModule>
+
+ErrorDocument 404 /404.html
