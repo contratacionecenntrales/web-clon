@@ -18,6 +18,7 @@ const es = {
     nosotros: "Nosotros",
     blog: "Blog",
     contacto: "Contacto",
+    distribuidores: "Acceso Distribuidores",
     llamadaGratuita: "Llamada gratuita",
     abrirMenu: "Abrir menú",
     inicio: "Labs24k - Inicio",

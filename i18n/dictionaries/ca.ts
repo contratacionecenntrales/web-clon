@@ -19,6 +19,7 @@ const ca: Dictionary = {
     nosotros: "Nosaltres",
     blog: "Blog",
     contacto: "Contacte",
+    distribuidores: "Accés Distribuïdors",
     llamadaGratuita: "Trucada gratuïta",
     abrirMenu: "Obrir menú",
     inicio: "Labs24k - Inici",

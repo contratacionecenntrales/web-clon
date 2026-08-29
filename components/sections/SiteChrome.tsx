@@ -1,7 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
+import { LogIn } from "lucide-react";
 import type { Dictionary } from "@/i18n/dictionaries/es";
 import { localeHref, type Locale } from "@/i18n/config";
+
+// The commercial intranet is a separate app hosted on its own subdomain
+// (its build assumes it owns the domain root, so it can't live in a
+// subpath of this site) — see /intranet-labs24k in the deploy package.
+export const INTRANET_LOGIN_URL = "https://intranet.labs24k.com/auth";
 
 export function SiteChrome({ dict, locale }: { dict: Dictionary; locale: Locale }) {
   const { nav, banner } = dict;
@@ -51,9 +57,17 @@ export function SiteChrome({ dict, locale }: { dict: Dictionary; locale: Locale 
             </Link>
             <Link href={href("/#nosotros")}>{nav.nosotros}</Link>
             <Link href="/blog">{nav.blog}</Link>
+            <a href={INTRANET_LOGIN_URL} className="nav__distributor-link">
+              <LogIn aria-hidden="true" size={14} />
+              {nav.distribuidores}
+            </a>
           </nav>
 
           <div className="header__cta">
+            <a href={INTRANET_LOGIN_URL} className="header__contact-link header__distributor-link">
+              <LogIn aria-hidden="true" size={14} />
+              {nav.distribuidores}
+            </a>
             <Link href={href("/#contacto")} className="header__contact-link">{nav.contacto}</Link>
             <Link href={href("/#contacto")} className="btn btn--primary btn--sm">{nav.llamadaGratuita}</Link>
           </div>

@@ -19,6 +19,7 @@ const ar: Dictionary = {
     nosotros: "من نحن",
     blog: "المدونة",
     contacto: "تواصل معنا",
+    distribuidores: "دخول الموزعين",
     llamadaGratuita: "مكالمة مجانية",
     abrirMenu: "فتح القائمة",
     inicio: "Labs24k - الصفحة الرئيسية",

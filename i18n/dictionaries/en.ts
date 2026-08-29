@@ -19,6 +19,7 @@ const en: Dictionary = {
     nosotros: "About us",
     blog: "Blog",
     contacto: "Contact",
+    distribuidores: "Distributor Login",
     llamadaGratuita: "Free call",
     abrirMenu: "Open menu",
     inicio: "Labs24k - Home",

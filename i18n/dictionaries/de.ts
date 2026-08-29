@@ -19,6 +19,7 @@ const de: Dictionary = {
     nosotros: "Über uns",
     blog: "Blog",
     contacto: "Kontakt",
+    distribuidores: "Händler-Login",
     llamadaGratuita: "Kostenloses Gespräch",
     abrirMenu: "Menü öffnen",
     inicio: "Labs24k - Startseite",
