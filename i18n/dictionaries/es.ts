@@ -364,7 +364,11 @@ const es = {
     contactHeading: "Contacto",
     note: "Innovación, crecimiento y tecnología",
     rights: "Todos los derechos reservados.",
-    legalLinks: ["Aviso legal", "Política de privacidad", "Cookies"],
+    legalLinks: [
+      { label: "Aviso legal", href: "/aviso-legal" },
+      { label: "Política de privacidad", href: "/privacidad" },
+      { label: "Cookies", href: "/cookies" },
+    ],
     scrollTop: "Volver arriba",
     language: "Idioma",
   },

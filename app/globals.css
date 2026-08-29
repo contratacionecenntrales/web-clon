@@ -971,4 +971,30 @@ section { padding: 96px 0; }
 [dir="rtl"] .hero__glow--1 { left: auto; right: -180px; }
 [dir="rtl"] .hero__glow--2 { right: auto; left: -200px; }
 
+/* ============ Legal pages (aviso legal, privacidad, cookies) ============ */
+.legal-page { padding: 64px 0 96px; }
+.legal-page__container { max-width: 760px; margin: 0 auto; }
+.legal-page__back {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 0.85rem; font-weight: 600; color: var(--slate-400);
+  margin-bottom: 28px; transition: color 0.2s;
+}
+.legal-page__back:hover { color: #fff; }
+.legal-page__title { font-size: clamp(1.9rem, 1.3rem + 2vw, 2.6rem); color: #fff; margin-bottom: 10px; }
+.legal-page__updated { color: var(--slate-500); font-size: 0.85rem; margin-bottom: 40px; }
+.legal-page__content h2 { font-size: 1.3rem; color: #fff; margin: 40px 0 14px; }
+.legal-page__content h2:first-child { margin-top: 0; }
+.legal-page__content p { color: var(--slate-400); font-size: 0.98rem; line-height: 1.7; margin-bottom: 16px; }
+.legal-page__content ul { margin: 0 0 16px; padding: 0; }
+.legal-page__content li { position: relative; padding-left: 20px; color: var(--slate-400); font-size: 0.98rem; line-height: 1.7; margin-bottom: 8px; }
+.legal-page__content li::before { content: '—'; position: absolute; left: 0; color: var(--blue-light); }
+.legal-page__content strong { color: #fff; font-weight: 700; }
+.legal-page__content a { color: var(--blue-light); text-decoration: underline; text-underline-offset: 2px; }
+.legal-page__table { width: 100%; border-collapse: collapse; margin-bottom: 20px; font-size: 0.92rem; }
+.legal-page__table th, .legal-page__table td { text-align: left; padding: 10px 14px; border: 1px solid var(--border-dark); color: var(--slate-400); }
+.legal-page__table th { color: #fff; background: rgba(255,255,255,0.03); width: 40%; }
+[dir="rtl"] .legal-page__content li { padding-left: 0; padding-right: 20px; }
+[dir="rtl"] .legal-page__content li::before { left: auto; right: 0; }
+[dir="rtl"] .legal-page__table th, [dir="rtl"] .legal-page__table td { text-align: right; }
+
 }

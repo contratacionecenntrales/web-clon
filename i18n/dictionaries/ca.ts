@@ -365,7 +365,11 @@ const ca: Dictionary = {
     contactHeading: "Contacte",
     note: "Innovació, creixement i tecnologia",
     rights: "Tots els drets reservats.",
-    legalLinks: ["Avís legal", "Política de privacitat", "Cookies"],
+    legalLinks: [
+      { label: "Avís legal", href: "/aviso-legal" },
+      { label: "Política de privacitat", href: "/privacidad" },
+      { label: "Cookies", href: "/cookies" },
+    ],
     scrollTop: "Tornar amunt",
     language: "Idioma",
   },

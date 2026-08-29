@@ -25,7 +25,7 @@ export function Footer({ dict, services, locale }: { dict: Dictionary["footer"];
               <a href="https://www.instagram.com/labs24k" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
                 <svg aria-hidden="true" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
               </a>
-              <a href="mailto:admin@labs24k.com" aria-label="Email">
+              <a href="mailto:info@labs24k.com" aria-label="Email">
                 <svg aria-hidden="true" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
               </a>
             </div>
@@ -44,7 +44,7 @@ export function Footer({ dict, services, locale }: { dict: Dictionary["footer"];
           </div>
           <div className="footer__col">
             <h4>{dict.contactHeading}</h4>
-            <a href="mailto:admin@labs24k.com">admin@labs24k.com</a>
+            <a href="mailto:info@labs24k.com">info@labs24k.com</a>
             <p className="footer__note">{dict.note}</p>
           </div>
         </div>
@@ -52,8 +52,8 @@ export function Footer({ dict, services, locale }: { dict: Dictionary["footer"];
           <p>© <span>{year}</span> Labs24k. {dict.rights}</p>
           <LanguageSwitcher currentLocale={locale} label={dict.language} />
           <div className="footer__legal">
-            {dict.legalLinks.map((label) => (
-              <a href="#" key={label}>{label}</a>
+            {dict.legalLinks.map((link) => (
+              <Link href={link.href} key={link.href}>{link.label}</Link>
             ))}
           </div>
         </div>

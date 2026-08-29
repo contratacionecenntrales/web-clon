@@ -365,7 +365,11 @@ const ar: Dictionary = {
     contactHeading: "تواصل معنا",
     note: "ابتكار ونمو وتكنولوجيا",
     rights: "جميع الحقوق محفوظة.",
-    legalLinks: ["إشعار قانوني", "سياسة الخصوصية", "ملفات تعريف الارتباط"],
+    legalLinks: [
+      { label: "إشعار قانوني", href: "/aviso-legal" },
+      { label: "سياسة الخصوصية", href: "/privacidad" },
+      { label: "ملفات تعريف الارتباط", href: "/cookies" },
+    ],
     scrollTop: "العودة للأعلى",
     language: "اللغة",
   },

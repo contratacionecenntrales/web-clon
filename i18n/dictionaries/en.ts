@@ -365,7 +365,11 @@ const en: Dictionary = {
     contactHeading: "Contact",
     note: "Innovation, growth and technology",
     rights: "All rights reserved.",
-    legalLinks: ["Legal notice", "Privacy policy", "Cookies"],
+    legalLinks: [
+      { label: "Legal notice", href: "/aviso-legal" },
+      { label: "Privacy policy", href: "/privacidad" },
+      { label: "Cookies", href: "/cookies" },
+    ],
     scrollTop: "Back to top",
     language: "Language",
   },
