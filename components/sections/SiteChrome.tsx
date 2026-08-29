@@ -50,6 +50,7 @@ export function SiteChrome({ dict, locale }: { dict: Dictionary; locale: Locale 
               <span className="ping-dot" aria-hidden="true"></span>{nav.aiAct}
             </Link>
             <Link href={href("/#nosotros")}>{nav.nosotros}</Link>
+            <Link href="/blog">{nav.blog}</Link>
           </nav>
 
           <div className="header__cta">

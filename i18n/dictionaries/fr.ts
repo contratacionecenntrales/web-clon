@@ -17,6 +17,7 @@ const fr: Dictionary = {
     libroGratis: "Gratuit",
     aiAct: "AI Act",
     nosotros: "À propos",
+    blog: "Blog",
     contacto: "Contact",
     llamadaGratuita: "Appel gratuit",
     abrirMenu: "Ouvrir le menu",

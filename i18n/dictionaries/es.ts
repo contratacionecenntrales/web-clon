@@ -16,6 +16,7 @@ const es = {
     libroGratis: "Gratis",
     aiAct: "AI Act",
     nosotros: "Nosotros",
+    blog: "Blog",
     contacto: "Contacto",
     llamadaGratuita: "Llamada gratuita",
     abrirMenu: "Abrir menú",

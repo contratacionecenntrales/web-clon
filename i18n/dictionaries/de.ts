@@ -17,6 +17,7 @@ const de: Dictionary = {
     libroGratis: "Kostenlos",
     aiAct: "AI Act",
     nosotros: "Über uns",
+    blog: "Blog",
     contacto: "Kontakt",
     llamadaGratuita: "Kostenloses Gespräch",
     abrirMenu: "Menü öffnen",

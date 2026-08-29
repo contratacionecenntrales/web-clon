@@ -17,6 +17,7 @@ const ca: Dictionary = {
     libroGratis: "Gratis",
     aiAct: "AI Act",
     nosotros: "Nosaltres",
+    blog: "Blog",
     contacto: "Contacte",
     llamadaGratuita: "Trucada gratuïta",
     abrirMenu: "Obrir menú",

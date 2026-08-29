@@ -17,6 +17,7 @@ const en: Dictionary = {
     libroGratis: "Free",
     aiAct: "AI Act",
     nosotros: "About us",
+    blog: "Blog",
     contacto: "Contact",
     llamadaGratuita: "Free call",
     abrirMenu: "Open menu",

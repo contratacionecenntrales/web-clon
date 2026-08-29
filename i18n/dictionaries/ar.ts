@@ -17,6 +17,7 @@ const ar: Dictionary = {
     libroGratis: "مجاني",
     aiAct: "AI Act",
     nosotros: "من نحن",
+    blog: "المدونة",
     contacto: "تواصل معنا",
     llamadaGratuita: "مكالمة مجانية",
     abrirMenu: "فتح القائمة",
