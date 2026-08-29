@@ -254,13 +254,21 @@ section { padding: 96px 0; }
 .btn--sm { padding: 9px 18px; font-size: 0.82rem; }
 .btn--lg { padding: 15px 32px; font-size: 0.98rem; }
 .btn--block { width: 100%; }
-.btn-row { display: flex; gap: 14px; flex-wrap: wrap; }
+.btn--gold {
+  background: linear-gradient(135deg, var(--gold-light), var(--gold) 55%, var(--gold-dark));
+  color: #2a2005;
+  box-shadow: 0 4px 20px rgba(217,184,74,0.3);
+}
+.btn--gold:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(217,184,74,0.45); }
+.btn-row { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
+.btn-row__note { font-size: 0.8rem; color: var(--slate-500); }
 
 .link-arrow { color: var(--blue-light); font-weight: 600; font-size: 0.95rem; }
 .link-arrow:hover { text-decoration: underline; }
 
 .check-list li { position: relative; padding-left: 26px; margin-bottom: 12px; color: var(--slate-300); font-size: 0.95rem; }
 .check-list li::before { content: '✓'; position: absolute; left: 0; color: var(--blue-light); font-weight: 700; }
+.check-list--gold li::before { color: var(--gold-light); }
 .check-list--blue li::before { color: var(--blue-light); }
 
 /* ============ Scroll progress / Alert banner ============ */
@@ -489,30 +497,60 @@ section { padding: 96px 0; }
 .logos-strip__row span { font-weight: 800; font-size: 1.05rem; letter-spacing: -0.01em; color: rgba(255,255,255,0.35); }
 
 /* ============ Book ============ */
-.book__inner { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 64px; align-items: center; }
-.book__cover { position: relative; display: flex; justify-content: center; }
-.book__cover-glow { position: absolute; inset: -30px; border-radius: 32px; background: radial-gradient(circle, rgba(18,58,82,0.28) 0%, transparent 70%); filter: blur(24px); }
-.book__cover-card {
-  position: relative; width: 270px; aspect-ratio: 3/4.3; border-radius: 6px; overflow: hidden;
-  background: linear-gradient(165deg, #1a6fa8 0%, #0d3f66 55%, #082744 100%);
-  border: 1px solid var(--border-dark-strong);
-  box-shadow: 0 30px 70px rgba(0,0,0,0.55), 0 0 60px rgba(18,58,82,0.15);
-  transform: rotate(-4deg);
-  display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;
-  padding: 40px 22px 24px;
-  gap: 8px;
+:root {
+  --gold: #d9b84a;
+  --gold-light: #f0d878;
+  --gold-dark: #8a6b1e;
 }
-.book__cover-band { position: absolute; left: -10%; width: 120%; background: rgba(247,248,250,0.96); transform: skewY(-3deg); }
-.book__cover-band--top { top: 14%; height: 34px; }
-.book__cover-band--bottom { top: 68%; height: 78px; display: flex; align-items: center; justify-content: center; padding: 0 30px; }
-.book__cover-band--bottom p { font-size: 0.62rem; font-weight: 700; color: #0d3f66; text-transform: uppercase; letter-spacing: 0.03em; line-height: 1.4; transform: skewY(3deg); }
-.book__cover-card h3 {
-  position: relative; z-index: 1; font-size: 2rem; font-weight: 900; color: #fff; line-height: 1.05;
-  letter-spacing: -0.02em; margin-top: 20px;
+.book__inner { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 72px; align-items: center; }
+.book__cover { position: relative; display: flex; justify-content: center; perspective: 1400px; }
+.book__cover-glow { position: absolute; inset: -40px; border-radius: 32px; background: radial-gradient(circle, rgba(217,184,74,0.18) 0%, transparent 70%); filter: blur(28px); }
+
+.book3d {
+  position: relative; width: 250px; height: 340px;
+  transform-style: preserve-3d; transform: rotateY(-24deg) rotateX(3deg);
+  transition: transform 0.6s ease;
 }
-.text-gradient-yellow { color: #fbbf24; }
-.book__cover-edition { position: relative; z-index: 1; font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.65); margin-top: 4px; }
-.book__cover-author { margin-top: auto; position: relative; z-index: 1; font-size: 0.78rem; font-weight: 600; color: rgba(255,255,255,0.85); }
+.book__cover:hover .book3d { transform: rotateY(-14deg) rotateX(2deg); }
+
+.book3d__cover {
+  position: absolute; inset: 0; border-radius: 2px 8px 8px 2px; overflow: hidden;
+  background: linear-gradient(155deg, #123a52 0%, #0a2540 55%, #071b30 100%);
+  border: 1px solid rgba(217,184,74,0.25);
+  box-shadow: 10px 20px 50px rgba(0,0,0,0.55);
+  display: flex; flex-direction: column; align-items: center; text-align: center;
+  padding: 30px 22px 22px;
+}
+.book3d__network { position: absolute; inset: 0; opacity: 0.35; }
+.book3d__eyebrow {
+  position: relative; z-index: 1; font-size: 0.6rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--gold-light); margin-bottom: 18px;
+}
+.book3d__title {
+  position: relative; z-index: 1; font-size: 1.55rem; font-weight: 900; line-height: 1.12; letter-spacing: -0.01em;
+  background: linear-gradient(180deg, #fff 0%, var(--gold-light) 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.book3d__subtitle {
+  position: relative; z-index: 1; font-size: 0.68rem; color: rgba(255,255,255,0.6); margin-top: 10px; line-height: 1.5;
+  padding-top: 10px; border-top: 1px solid rgba(217,184,74,0.3);
+}
+.book3d__author { position: relative; z-index: 1; margin-top: auto; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.04em; color: rgba(255,255,255,0.85); }
+.book .label { color: var(--gold-light); }
+
+.book3d__spine {
+  position: absolute; left: 0; top: 0; width: 26px; height: 100%;
+  background: linear-gradient(180deg, var(--gold-light) 0%, var(--gold) 45%, var(--gold-dark) 100%);
+  transform: rotateY(-90deg) translateX(-13px);
+  transform-origin: left center;
+  box-shadow: inset -2px 0 6px rgba(0,0,0,0.3);
+}
+.book3d__pages {
+  position: absolute; right: -1px; top: 5px; width: 10px; height: calc(100% - 10px);
+  background: repeating-linear-gradient(180deg, #efe6cd 0px, #ded2ae 1.5px, #efe6cd 3px);
+  transform: rotateY(90deg) translateX(5px);
+  transform-origin: right center;
+}
 
 /* ============ Timeline / Servicios ============ */
 .timeline { position: relative; padding-left: 0; }
