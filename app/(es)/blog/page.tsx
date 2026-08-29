@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import type { CSSProperties } from "react";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import es from "@/i18n/dictionaries/es";
@@ -8,6 +7,7 @@ import { blogPosts } from "@/data/blog";
 import { SiteChrome } from "@/components/sections/SiteChrome";
 import { Footer } from "@/components/sections/Footer";
 import { SiteInteractions } from "@/components/SiteInteractions";
+import { BlogFilter } from "@/components/BlogFilter";
 
 export const metadata: Metadata = {
   title: "Blog | Labs24k",
@@ -33,19 +33,7 @@ export default function BlogPage() {
 
         <section className="section-light">
           <div className="container">
-            <div className="blog-grid">
-              {blogPosts.map((post, i) => (
-                <Link href={`/blog/${post.slug}`} className="blog-card reveal" data-reveal-delay={(i % 3) * 80} key={post.slug}>
-                  <span className="blog-card__category" style={{ "--cat-color": post.categoryColor } as CSSProperties}>{post.category}</span>
-                  <h3>{post.title}</h3>
-                  <p>{post.excerpt}</p>
-                  <div className="blog-card__meta">
-                    <span>{post.dateLabel}</span>
-                    <span>{post.readTime} de lectura</span>
-                  </div>
-                </Link>
-              ))}
-            </div>
+            <BlogFilter posts={blogPosts} />
           </div>
         </section>
 
